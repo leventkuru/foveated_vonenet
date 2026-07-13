@@ -1,0 +1,23 @@
+{
+  "timestamp_utc": "2026-07-13T09:44:32.316036+00:00",
+  "python_version": "3.12.6",
+  "platform": "macOS-26.3.1-arm64-arm-64bit",
+  "torch_version": "2.6.0",
+  "torchvision_version": "0.21.0",
+  "cuda_available": false,
+  "cuda_version": null,
+  "gpu_name": null,
+  "project_commit": null,
+  "cfg": {
+    "seed": 0,
+    "smoke_test": true,
+    "image_size": 224,
+    "data_dir": "/Users/10492/Desktop/Bogazici/Tez/foveated_vision/data"
+  },
+  "benchmark_datasets_available": {
+    "imagenet-c": false,
+    "imagenet-r": false,
+    "imagenet-sketch": false,
+    "stylized-imagenet": false
+  }
+}

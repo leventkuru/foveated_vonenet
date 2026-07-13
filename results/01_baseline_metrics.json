@@ -1,0 +1,27 @@
+{
+  "clean_accuracy": {
+    "B0_resnet50": 0.0,
+    "B1_alexnet": 0.0,
+    "B2_voneresnet50": 0.0,
+    "B3_cornet_s": 0.0
+  },
+  "pgd_robust_accuracy": {
+    "B0_resnet50": 0.0,
+    "B1_alexnet": 0.0,
+    "B2_voneresnet50": 0.0,
+    "B3_cornet_s": 0.0
+  },
+  "cfg": {
+    "seed": 0,
+    "smoke_test": true,
+    "image_size": 224,
+    "data_dir": "/Users/10492/Desktop/Bogazici/Tez/foveated_vision/data",
+    "batch_size": 4,
+    "pgd_eps": 0.03137254901960784,
+    "pgd_alpha": 0.00784313725490196,
+    "pretrained": false,
+    "pgd_steps": 3,
+    "eot_samples": 2,
+    "max_samples": 8
+  }
+}

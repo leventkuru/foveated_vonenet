@@ -1,0 +1,67 @@
+{
+  "notebook": "06_full_model_and_ablations",
+  "cfg": {
+    "seed": 42,
+    "smoke_test": true,
+    "image_size": 32,
+    "n_classes": 10,
+    "ppd": 4.0,
+    "fovea_deg": 1.0,
+    "transition_deg": 0.5,
+    "rblur_sigma0": 0.5,
+    "rblur_slope": 1.5,
+    "snr0_db": 30.0,
+    "beta": 2.0,
+    "patch_size": 8,
+    "max_glances": 4,
+    "halt_threshold": 0.75,
+    "margin": 0.25,
+    "n_epochs_smoke": 3,
+    "n_batches_smoke": 20,
+    "batch_size": 32,
+    "lr": 0.001,
+    "eps": 0.01568627450980392,
+    "pgd_steps": 5,
+    "pgd_alpha": 0.00392156862745098,
+    "eot_samples": 4
+  },
+  "ablation_table": {
+    "full": {
+      "val_acc": 0.0,
+      "avg_glances": 1.3515625,
+      "efficiency": 0.0
+    },
+    "no_C1_fov": {
+      "val_acc": 0.0,
+      "avg_glances": 1.2890625,
+      "efficiency": 0.0
+    },
+    "no_C2_trace": {
+      "val_acc": 0.0,
+      "avg_glances": 1.046875,
+      "efficiency": 0.0
+    },
+    "no_C3_noise": {
+      "val_acc": 0.0,
+      "avg_glances": 2.109375,
+      "efficiency": 0.0
+    },
+    "no_C4_resnet": {
+      "val_acc": 0.0,
+      "avg_glances": 4.0,
+      "efficiency": 0.0
+    },
+    "no_C5_multi": {
+      "val_acc": 0.0,
+      "avg_glances": 1.0,
+      "efficiency": 0.0
+    }
+  },
+  "adversarial": {
+    "clean_acc": 0.0,
+    "robust_acc": 0.0,
+    "eps": 0.01568627450980392,
+    "eot_samples": 4
+  },
+  "note": "smoke_test=True: all numbers reflect pipeline, not real performance."
+}

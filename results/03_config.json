@@ -1,0 +1,29 @@
+{
+  "seed": 42,
+  "smoke_test": true,
+  "dataset": "cifar10",
+  "image_size": 32,
+  "n_classes": 10,
+  "noise_modes": [
+    null,
+    "neuronal"
+  ],
+  "backbones": [
+    "resnet50",
+    "cornet_s"
+  ],
+  "pls_components": 5,
+  "n_proxy_neurons": 64,
+  "n_proxy_images": 128,
+  "n_epochs_smoke": 3,
+  "n_batches_smoke": 20,
+  "batch_size": 64,
+  "lr": 0.001,
+  "eps": 0.01568627450980392,
+  "pgd_steps": 5,
+  "pgd_alpha": 0.00392156862745098,
+  "eot_samples": 4,
+  "result_dir": "/Users/10492/Desktop/Bogazici/Tez/foveated_vision/results",
+  "ckpt_dir": "/Users/10492/Desktop/Bogazici/Tez/foveated_vision/checkpoints",
+  "data_dir": "/Users/10492/Desktop/Bogazici/Tez/foveated_vision/data"
+}

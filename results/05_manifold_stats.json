@@ -1,0 +1,56 @@
+{
+  "notebook": "05_mftma_certification",
+  "cfg": {
+    "seed": 42,
+    "smoke_test": true,
+    "image_size": 32,
+    "n_classes": 10,
+    "ppd": 4.0,
+    "fovea_deg": 1.0,
+    "transition_deg": 0.5,
+    "rblur_sigma0": 0.5,
+    "rblur_slope": 1.5,
+    "snr0_db": 30.0,
+    "beta": 2.0,
+    "patch_size": 8,
+    "n_manifold_images": 64,
+    "n_classes_mftma": 5,
+    "n_dichotomies": 20,
+    "pca_variance": 0.95,
+    "conditions": [
+      "B7_resnet50",
+      "B8_vone_off",
+      "B9_vone_on",
+      "A2_rblur_periphery",
+      "A4_trace_periphery"
+    ]
+  },
+  "manifold_stats": {
+    "B7_resnet50": {
+      "alpha_c": 0.85,
+      "R_M": 9.80769157409668,
+      "D_M": 29.639316940307616
+    },
+    "B8_vone_off": {
+      "alpha_c": 0.85,
+      "R_M": 117.30961608886719,
+      "D_M": 29.21359634399414
+    },
+    "B9_vone_on": {
+      "alpha_c": 0.2,
+      "R_M": 414.69342041015625,
+      "D_M": 36.13276672363281
+    },
+    "A2_rblur_periphery": {
+      "alpha_c": 0.85,
+      "R_M": 3.582195997238159,
+      "D_M": 16.237802696228027
+    },
+    "A4_trace_periphery": {
+      "alpha_c": 0.85,
+      "R_M": 10.76446533203125,
+      "D_M": 24.97634391784668
+    }
+  },
+  "note": "smoke_test=True: synthetic proxy data + random models. Stats reflect pipeline, not real neural geometry."
+}

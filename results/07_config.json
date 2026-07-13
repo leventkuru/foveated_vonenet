@@ -1,0 +1,28 @@
+{
+  "seed": 42,
+  "smoke_test": true,
+  "n_classes": 10,
+  "image_size": 32,
+  "n_epochs": 3,
+  "batch_size": 64,
+  "lr": 0.001,
+  "weight_decay": 0.0005,
+  "lr_schedule": "cosine",
+  "snr0_db_sweep": [
+    20.0,
+    30.0,
+    40.0
+  ],
+  "beta_sweep": [
+    1.0,
+    2.0,
+    3.0
+  ],
+  "eps": 0.03137254901960784,
+  "pgd_steps": 5,
+  "pgd_alpha": 0.00784313725490196,
+  "eot_samples": 2,
+  "data_dir": "/Users/10492/Desktop/Bogazici/Tez/foveated_vision/data",
+  "result_dir": "/Users/10492/Desktop/Bogazici/Tez/foveated_vision/results",
+  "ckpt_dir": "/Users/10492/Desktop/Bogazici/Tez/foveated_vision/checkpoints"
+}

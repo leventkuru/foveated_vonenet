@@ -1,0 +1,136 @@
+{
+  "notebook": "02_foveation_rblur_and_periphery",
+  "cfg": {
+    "seed": 42,
+    "smoke_test": true,
+    "dataset": "cifar10",
+    "image_size": 32,
+    "ppd": 4.0,
+    "fixation_yx": [
+      0.5,
+      0.5
+    ],
+    "rblur_sigma0": 0.5,
+    "rblur_slope": 1.5,
+    "fovea_deg": 1.0,
+    "transition_deg": 0.5,
+    "snr0_db": 30.0,
+    "beta": 2.0,
+    "beta_sweep": [
+      1.0,
+      2.0,
+      3.0
+    ],
+    "rho": 1.0,
+    "patch_size": 8,
+    "n_epochs_smoke": 3,
+    "n_batches_smoke": 30,
+    "batch_size": 64,
+    "lr": 0.001,
+    "ablation_modes": [
+      "none",
+      "blur",
+      "iid",
+      "trace"
+    ]
+  },
+  "ablation_results": {
+    "none": {
+      "final_val_acc": 0.0703125,
+      "history": [
+        {
+          "epoch": 0,
+          "train_loss": 2.3741707503795624,
+          "train_acc": 0.10546875,
+          "val_acc": 0.1171875
+        },
+        {
+          "epoch": 1,
+          "train_loss": 2.1855368316173553,
+          "train_acc": 0.212890625,
+          "val_acc": 0.1328125
+        },
+        {
+          "epoch": 2,
+          "train_loss": 2.0759302973747253,
+          "train_acc": 0.2578125,
+          "val_acc": 0.0703125
+        }
+      ],
+      "note": "smoke_test \u2014 random model + synthetic data; numbers NOT meaningful as real baselines"
+    },
+    "blur": {
+      "final_val_acc": 0.09375,
+      "history": [
+        {
+          "epoch": 0,
+          "train_loss": 2.3873205482959747,
+          "train_acc": 0.09375,
+          "val_acc": 0.125
+        },
+        {
+          "epoch": 1,
+          "train_loss": 2.2729134261608124,
+          "train_acc": 0.154296875,
+          "val_acc": 0.140625
+        },
+        {
+          "epoch": 2,
+          "train_loss": 2.172089785337448,
+          "train_acc": 0.189453125,
+          "val_acc": 0.09375
+        }
+      ],
+      "note": "smoke_test \u2014 random model + synthetic data; numbers NOT meaningful as real baselines"
+    },
+    "iid": {
+      "final_val_acc": 0.1171875,
+      "history": [
+        {
+          "epoch": 0,
+          "train_loss": 2.380881756544113,
+          "train_acc": 0.119140625,
+          "val_acc": 0.1171875
+        },
+        {
+          "epoch": 1,
+          "train_loss": 2.2060206532478333,
+          "train_acc": 0.18359375,
+          "val_acc": 0.1484375
+        },
+        {
+          "epoch": 2,
+          "train_loss": 2.0733103901147842,
+          "train_acc": 0.275390625,
+          "val_acc": 0.1171875
+        }
+      ],
+      "note": "smoke_test \u2014 random model + synthetic data; numbers NOT meaningful as real baselines"
+    },
+    "trace": {
+      "final_val_acc": 0.140625,
+      "history": [
+        {
+          "epoch": 0,
+          "train_loss": 2.3811680376529694,
+          "train_acc": 0.109375,
+          "val_acc": 0.1171875
+        },
+        {
+          "epoch": 1,
+          "train_loss": 2.2185865342617035,
+          "train_acc": 0.185546875,
+          "val_acc": 0.1484375
+        },
+        {
+          "epoch": 2,
+          "train_loss": 2.107515037059784,
+          "train_acc": 0.271484375,
+          "val_acc": 0.140625
+        }
+      ],
+      "note": "smoke_test \u2014 random model + synthetic data; numbers NOT meaningful as real baselines"
+    }
+  },
+  "note": "smoke_test=True: all accuracy numbers are from a randomly-initialised model on synthetic data. Run with smoke_test=False for real baselines."
+}

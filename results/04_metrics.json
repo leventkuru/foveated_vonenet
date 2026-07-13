@@ -1,0 +1,77 @@
+{
+  "notebook": "04_it_feedback_multiglance",
+  "cfg": {
+    "seed": 42,
+    "smoke_test": true,
+    "dataset": "cifar10",
+    "image_size": 32,
+    "n_classes": 10,
+    "ppd": 4.0,
+    "fixation_yx": [
+      0.5,
+      0.5
+    ],
+    "fovea_deg": 1.0,
+    "transition_deg": 0.5,
+    "rblur_sigma0": 0.5,
+    "rblur_slope": 1.5,
+    "snr0_db": 30.0,
+    "beta": 2.0,
+    "patch_size": 8,
+    "max_glances": 4,
+    "halt_threshold": 0.75,
+    "fixation_grid_rows": 2,
+    "fixation_grid_cols": 2,
+    "margin": 0.25,
+    "n_epochs_smoke": 3,
+    "n_batches_smoke": 20,
+    "batch_size": 32,
+    "lr": 0.001
+  },
+  "D1": {
+    "history": [
+      {
+        "epoch": 0,
+        "val_acc": 0.125,
+        "avg_glances": 1.0
+      },
+      {
+        "epoch": 1,
+        "val_acc": 0.1015625,
+        "avg_glances": 1.0
+      },
+      {
+        "epoch": 2,
+        "val_acc": 0.1015625,
+        "avg_glances": 1.0
+      }
+    ],
+    "note": "smoke_test synthetic data"
+  },
+  "D2": {
+    "history": [
+      {
+        "epoch": 0,
+        "val_acc": 0.125,
+        "avg_glances": 4.0
+      },
+      {
+        "epoch": 1,
+        "val_acc": 0.1015625,
+        "avg_glances": 4.0
+      },
+      {
+        "epoch": 2,
+        "val_acc": 0.1015625,
+        "avg_glances": 4.0
+      }
+    ],
+    "note": "smoke_test synthetic data"
+  },
+  "D3": {
+    "note": "TODO: full REINFORCE training (P2, not run in smoke_test)"
+  },
+  "D4": {
+    "note": "TODO: entropy halting + counterfactual loss (P3)"
+  }
+}
