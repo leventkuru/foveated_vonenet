@@ -43,8 +43,8 @@ class MultiGlanceFoveatedModel(nn.Module):
                                         self.slope, self.ppd) for i in range(x.size(0))])
     def forward(self, x_raw, return_glance_count=False):
         B = x_raw.size(0)
-        logit_sum = None; halted = torch.zeros(B, dtype=torch.bool)
-        glance_count = torch.ones(B, dtype=torch.long)
+        logit_sum = None; halted = torch.zeros(B, dtype=torch.bool, device=x_raw.device)
+        glance_count = torch.ones(B, dtype=torch.long, device=x_raw.device)
         for t, fix in enumerate(self.fixations):
             fov_x = self.foveate(x_raw, fix)
             z_t   = self.backbone(fov_x)

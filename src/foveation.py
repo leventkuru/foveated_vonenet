@@ -212,7 +212,7 @@ def apply_rblur(image: torch.Tensor,
     r_deg = r_deg.to(device)
     sigma_map = (sigma0 + slope * r_deg).clamp(min=0.0)  # [H, W]
     sigma_max = float(sigma_map.max().item())
-    sigma_levels = torch.linspace(0.0, sigma_max, n_levels)
+    sigma_levels = torch.linspace(0.0, sigma_max, n_levels, device=device)
     # Build pyramid
     blurred_stack = torch.stack(
         [gaussian_blur_2d(image, float(s.item())) for s in sigma_levels], dim=0

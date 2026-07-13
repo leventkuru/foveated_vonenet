@@ -59,10 +59,24 @@ def build_voneresnet50(pretrained: bool = True, map_location: str = "cpu"):
     respect to the model's *input* (see `src/overrides.py` for the full root-cause
     analysis). This function does not apply the patch itself, so that overrides stay
     visible in the calling notebook rather than hidden inside a builder function.
+
+    NOTE: `vonenet.get_model()` always wraps the model in `nn.DataParallel`, whose
+    `device_ids` are inferred from `torch.cuda.is_available()` at construction time --
+    independent of `map_location`. On a CUDA-visible machine with the default
+    `map_location="cpu"`, this leaves `device_ids=[0]` (expects cuda:0) while the
+    actual parameters sit on CPU, so `DataParallel.forward()` raises "module must have
+    its parameters and buffers on device cuda:0 ... but found ... cpu" on the very
+    first call, regardless of what device the input tensor is on. `_detach_data_parallel`
+    neutralizes this below: it moves the model to the caller's requested
+    `map_location` (never silently overriding an explicit "cpu" choice) and clears
+    `device_ids` so `DataParallel.forward()` skips the (buggy) device check entirely
+    and just calls the wrapped module directly -- correct for the single-device
+    inference/training this project does, and harmless if the caller later moves the
+    model again with `.to(...)`.
     """
     import vonenet
     model = vonenet.get_model(model_arch="resnet50", pretrained=pretrained, map_location=map_location)
-    return model, "vonenet"
+    return _detach_data_parallel(model, map_location), "vonenet"
 
 
 def build_cornet_s(pretrained: bool = True, map_location: str = "cpu"):
@@ -72,10 +86,32 @@ def build_cornet_s(pretrained: bool = True, map_location: str = "cpu"):
     is `DataParallel(Sequential(V1, V2, V4, IT, decoder))` -- see
     `external/CORnet/cornet/cornet_s.py`. `pretrained=True` downloads weights from the
     CORnet S3 bucket; `pretrained=False` performs no network access.
+
+    NOTE: like `build_voneresnet50`, `cornet.cornet_s()` wraps the model in
+    `nn.DataParallel` whose `device_ids` follow `torch.cuda.is_available()`, but never
+    itself moves the underlying parameters off CPU (`map_location` there only affects
+    where the *downloaded checkpoint* tensors land before `load_state_dict` copies
+    their values in-place). So on a CUDA-visible machine the same device_ids-vs-actual-
+    device mismatch as VOneNet occurs, independent of `map_location`. See
+    `_detach_data_parallel`.
     """
     import cornet
     model = cornet.cornet_s(pretrained=pretrained, map_location=map_location)
-    return model, "imagenet"
+    return _detach_data_parallel(model, map_location), "imagenet"
+
+
+def _detach_data_parallel(model: nn.Module, map_location) -> nn.Module:
+    """Move `model` to `map_location` and, if it's `nn.DataParallel`-wrapped, clear
+    `device_ids` so `DataParallel.forward()` skips its device-consistency check and
+    calls the wrapped module directly (see the NOTE in `build_voneresnet50` /
+    `build_cornet_s` for why that check is otherwise unreliable here). Single-device
+    inference/training never needed the multi-GPU replication DataParallel provides,
+    so this is a pure bugfix, not a behavior change for this project's use.
+    """
+    model = model.to(map_location)
+    if isinstance(model, nn.DataParallel):
+        model.device_ids = []
+    return model
 
 
 BASELINE_BUILDERS = {
